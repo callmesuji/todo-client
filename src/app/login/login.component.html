@@ -1,0 +1,48 @@
+
+
+
+ <div *ngIf="errorMessage" class="text-danger text-center">{{errorMessage}}</div>
+ <div *ngIf="successMessage" class="text-success text-center">{{successMessage}}</div> 
+
+    <div class="container mt-5 mb-5" style="background-color: rgb(13, 233, 104);" >
+        <div class="row justify-content-center">
+            <div class="col-md-5 offset mt-5">
+              
+                <div class="card card-login justify-content-center mt-5 mb-5"  >
+                 
+                    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                        <div class="card-header card-header-primary text-center">
+                            <h4 class="card-title">Login | Register</h4>                          
+                          </div>
+
+                          <div class="card-body">
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                  <i class="material-icons">mail</i>
+                                </span>
+                              </div>                            
+                              <input  type="email" id="username" formControlName="username" class="form-control" name="username" placeholder="Email...">
+                            </div>
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                  <i class="material-icons">lock_outline</i>
+                                </span>
+                              </div>                            
+                             <input  type="password" id="password" formControlName="password" name="password" class="form-control" placeholder="Password...">
+                            </div>
+                          </div>
+                          <div class="footer text-center">
+                            <div class="mb-2">
+                                <button class="btn btn-info  btn-md " [disabled]="!userForm.valid" *ngIf="isLogin" >Login</button>&nbsp;
+                                <button class="btn btn-info" *ngIf="!isLogin" [disabled]="!userForm.valid">Register</button> | <a style="cursor: pointer" class="text-success" (click)="onChange()">{{message}}</a>
+                             </div>                          
+                          </div>                    
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+ 
