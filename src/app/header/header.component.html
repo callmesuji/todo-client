@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light bg-dark">
+<!-- <nav class="navbar navbar-light bg-dark">
   <a class="navbar-brand text-white">TODO</a>
  
   <form class="form-inline" *ngIf="username">
@@ -6,3 +6,93 @@
     <button class="btn btn-outline-primary my-2 my-sm-0" (click)="logout()">Logout</button>
   </form>
 </nav>
+ -->
+ <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+    <body>
+        <div class="main-wrapper">
+            <div class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        
+                        <a class="navbar-brand" routerLink = "home" >
+                            <h3>TODO</h3>
+                        </a>
+                    </div>
+                     <div id="navbar" class="collapse navbar-collapse navbar-responsive-collapse"  *ngIf="username">
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a routerLink = "home">Home</a>
+                            </li>
+                            <li>
+                                <a  routerLink = "archive" >Archiva</a>
+                            </li>
+                            <li>
+                                <a>
+                                    <i class="fa fa-user-o" aria-hidden="true"></i>
+                                    {{username}}</a>
+                            </li>
+                            <li>
+                                <button class="btn-div btn " (click)="logout()">
+                                    <i class="fa fa-sign-out" ></i>
+                                    Logout</button>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+     
+ </body>
+ </html>
+
+
+
+                <!-- 
+                    <div class="main-wrapper">
+                            <div class="navbar navbar-default navbar-fixed-top">
+                                <div class="container">
+                                    <div class="navbar-header">
+                                        <a class="navbar-brand">
+                                            <h3>TODO</h3>
+                                        </a>
+                                    </div>
+                                    <div id="navbar" class="collapse navbar-collapse navbar-responsive-collapse">
+                                        <ul class="nav navbar-nav">
+                                            
+                                            <li>
+                                                <a href="home">Archive</a>
+                                            </li>
+                                            <li *ngIf="username">
+                                                <a>
+                                                    <i class="fa fa-user-o" aria-hidden="true"></i>
+                                                    {{username}}</a>
+                                            </li>
+                                           
+                                            <li  *ngIf = "username">
+                                                <a>
+                                                    <i  (click) = "logout()" class="fa fa-sign-out"></i>
+                                                    Logout</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                 -->

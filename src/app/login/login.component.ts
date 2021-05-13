@@ -1,20 +1,31 @@
 import { error, stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { TodoService } from '../service/todo.service';
 import { User } from '../shared/model/user.model';
 import { AuthService } from '../shared/service/auth/auth.service';
-
+interface AsyncValidatorFn { 
+  (c: AbstractControl): Promise<ValidationErrors|null>|Observable<ValidationErrors|null>
+}
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
+  userForm: FormGroup;
+  get name() {
+    return this.userForm.get("name");
+  }
+
+  get email() {
+    return this.userForm.get("email");
+  }
   isLogin = true;
   message = "Switch to Register";
-  userForm: FormGroup;
   successMessage: string = "";
   errorMessage: string = "";
 
@@ -27,7 +38,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
+
   onChange() {
+      this.userForm.reset();
     this.isLogin = !this.isLogin;
     if (!this.isLogin) {
       this.message = "Swich to Login";
@@ -36,7 +50,6 @@ export class LoginComponent implements OnInit {
     }
   }
   onSubmit(){
-    
     let user: User;
     user = this.userForm.value;
     if (this.isLogin) {
@@ -47,6 +60,7 @@ export class LoginComponent implements OnInit {
           this.authservice.addTokenAndUsername(token,user.username);
         }, _error => {
           this.errorMessage = "Invalid username or password";
+          this.userForm.reset();
           setTimeout(() => {
             this.errorMessage = "";
           }, 3000);
@@ -56,13 +70,18 @@ export class LoginComponent implements OnInit {
       this.authservice.register(user).subscribe(
         res => {
           if(res){{
-            this.userForm.reset();
             this.router.navigate(['/home']);
+            this.userForm.reset();
+            this.successMessage = "REGISTERED SUCCESSFULLY"
+             
           }}
         }, 
         _error => {
           this.userForm.reset();
-          alert("username already exists")
+          this.router.navigate(['login']);
+
+          alert("username already exists");
+
           // this.errorMessage = "username already exists"
           setTimeout(() => {
             this.errorMessage = "";

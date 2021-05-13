@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TodoService } from '../service/todo.service';
+import { Todo } from '../shared/model/todo.model';
 
 @Component({
   selector: 'app-archive',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArchiveComponent implements OnInit {
 
-  constructor() { }
+  constructor(private todoservice : TodoService) { }
+
+  archives : Todo[] = [];
+  
 
   ngOnInit(): void {
+    this.getArchivedTodos();
   }
+
+  getArchivedTodos() { 
+       this.todoservice.getArchivedTodos().subscribe(res => {
+        this.archives = res;
+    })
+}
 
 }

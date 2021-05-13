@@ -2,14 +2,16 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import {TodoService} from '../service/todo.service';
 import {Todo} from '../shared/model/todo.model';
-import {formatDate} from '@angular/common';
+
  
 
 @Component({selector: 'app-home', templateUrl: './home.component.html', styleUrls: ['./home.component.css']})
 export class HomeComponent implements OnInit {
-
-    btntxt : String = "create";
+    editTodo = "edit-todo";
+    btntxt : string = "create";
     showArchives = false;
+    myModal = false;
+    showButtonValue  = false;
     data = "";
     buttonName = "";
     todos : Todo[] = [];
@@ -19,13 +21,21 @@ export class HomeComponent implements OnInit {
         taskTitle: ['',[Validators.required]],
         description: ['', Validators.required],
         targetDate: ['', Validators.required]})
-    constructor(private todoservice : TodoService, private fb : FormBuilder) {
+    constructor(private todoservice : TodoService, private fb : FormBuilder) {   }
+    
 
-    }
 
     ngOnInit(): void {
         this.showTodos();
         this.getArchivedTodos();
+    }
+    mymodal(){
+        this.myModal = !this.myModal;
+
+    }
+    showButton(){
+        this.showButtonValue = !this.showButtonValue;
+
     }
 
 

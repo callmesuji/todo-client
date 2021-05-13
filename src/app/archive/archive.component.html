@@ -1,1 +1,55 @@
-<p>archive works!</p>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    </head>
+    <body>
+        <div class="main-wrapper">
+
+            <div class="inner-wrapper">
+
+                <div class="panel panel-default" *ngIf="archives.length > 0">
+                    <div class="panel-heading" >
+                        <h3>Archive List
+                        </h3>
+                    </div>
+                    <div class="panel-body table-responsive">
+
+                        <table id="example" class="table table-hover table-bordered" style="width:100%" >
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Date</th>
+                                    <th>Description</th>
+
+                                </tr>
+                            </thead>
+                            <tbody  *ngIf="archives.length > 0" >
+                                <tr *ngFor="let archive of archives">
+                                    <td>{{archive.taskTitle | uppercase}}</td>
+                                    <td> {{archive.targetDate | date : 'yyyy-MM-dd'}}</td>
+                                    <td> {{archive.description | uppercase}}</td> 
+                                </tr> 
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+                <h4 class="lead" *ngIf="archives.length == 0" style="color: red; justify-content: right;">NO TODOS ADDED PLEASE ADD TODOS FIRST</h4>
+            </div>
+
+
+        </div>
+    </body>
+</html>

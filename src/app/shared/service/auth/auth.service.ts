@@ -3,10 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { User } from '../../model/user.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  
+  
 
   baseUrl = "https://todo-ser-app.herokuapp.com/todo";
   usernameSubject = new Subject<string>();

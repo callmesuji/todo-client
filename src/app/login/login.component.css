@@ -1,6 +1,166 @@
-.cust-heading{
-    background-color:#0a0a09 ;
-    text-align: center;
-    padding: 5px;
-    color: white;
+.navbar-default {
+    background-color: #6f42c1 !important;
+    border-color: #6f42c1 !important;
 }
+.navbar>.container .navbar-brand h3{
+    margin: 0px !important;
+    color: #fff !important;
+}
+.navbar-default .navbar-nav .active a{
+    color: #fff;
+    background-color: #3f09a2 !important;
+}
+.navbar-default .navbar-nav a{
+    color: #fff !important;
+}
+.navbar-default li:hover a{
+    color: #fff;
+     background-color: #3f09a2 !important;
+}
+.navbar-nav {
+    float: right !important;
+    margin: 0;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #fff;
+}
+.navbar-default .navbar-toggle {
+    border-color: #fff;
+    float: left;
+    margin-left: 15px;
+}
+.main-wrapper .right-side {
+    position: relative;
+    padding: 0px;
+    margin: 100px 0px;
+    background: #fff;
+    border: 2px solid #e1e1e1;
+    border-radius: 20px;
+    box-shadow: 0px 2px 4px 2px #e1e1e1;
+}
+.main-wrapper .right-side .nav-tabs {
+    border: 0;
+}
+.main-wrapper .right-side .nav-tabs li {
+    width: 100%;
+    margin: 0 !important;
+    border-bottom: 4px solid #6f42c1;
+    text-align: center;
+    cursor: pointer !important;
+}
+.main-wrapper .right-side .nav-tabs li a {
+    border: 0;
+    text-decoration: none;
+    font-family: Helvetica;
+    font-size: 22px;
+    color: #999;
+    line-height: 14px;
+    padding: 20px;
+    display: block;
+    transition: all 0.5s;
+    text-transform: uppercase;
+    cursor: pointer !important;
+    background: transparent;
+}
+.main-wrapper .right-side .nav-tabs li a:hover {
+    background: none !important;
+}
+ 
+.main-wrapper .right-side .nav-tabs li.active a {
+    color: #6f42c1;
+}
+.main-wrapper .right-side .tab-content {
+    padding: 40px 20px;
+}
+.main-wrapper .right-side .tab-content .form-group {
+    margin-bottom: 30px;
+}
+.main-wrapper .right-side .tab-content .form-control {
+    color: #555;
+    padding-right: 0;
+    padding-left: 0;
+    background: transparent;
+    background-color: transparent;
+    border: 0 solid transparent;
+    border-bottom: 2px solid #e1e1e1;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -ms-box-shadow: none;
+    -o-box-shadow: none;
+    box-shadow: none;
+    height: 40px;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    transition: 0.5s;
+    -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.5, 1);
+    -moz-transition-timing-function: cubic-bezier(0.4, 0, 0.5, 1);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.5, 1);
+}
+.main-wrapper .right-side .tab-content .action-section {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    position: relative;
+}
+.main-wrapper .right-side .tab-content .action-section .sign-in {
+    background: #6f42c1;
+    color: #fff;
+    border: 1px solid #6f42c1;
+    padding: 10px 30px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+.main-wrapper .right-side .tab-content .action-section .sign-in:focus{
+    outline: none !important;
+}
+.main-wrapper .right-side .tab-content .action-section .sign-in:hover {
+    background: #3f09a2;
+}
+.main-wrapper .right-side .tab-content .action-section .sign-up {
+    background: #6f42c1;
+    color: #fff;
+    border: 1px solid #6f42c1;
+    padding: 10px 30px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+.main-wrapper .right-side .tab-content .action-section .sign-in:focus{
+    outline: none !important;
+}
+.main-wrapper .right-side .tab-content .action-section .sign-up:hover {
+    background: #3f09a2;
+}
+.right-side .tab-content .form-control::placeholder { 
+  text-transform: uppercase;
+}
+
+.right-side .tab-content .form-control:-ms-input-placeholder {
+  text-transform: uppercase;
+}
+
+.right-side .tab-content .form-control::-ms-input-placeholder { 
+  text-transform: uppercase;
+}
+.main-wrapper .right-side .tab-content .action-section .forgot-password{
+        vertical-align: middle;
+    padding: 10px 0px;
+    color: #6f42c1;
+    text-transform: uppercase;
+    font-size: 14px;
+    width: 100%;
+    display: inline-block;
+}
+
+@media only screen and (max-width:768px) and (min-width:320px){
+    
+    .main-wrapper .right-side {
+    padding: 30px !important;
+    height: auto !important;
+    }
+}
+ 
