@@ -49,8 +49,10 @@
                     <div class="panel-heading">
                         <h3>TODO List
                         </h3>
-                        <button type="submit" class="btn todo-button" (click) = showButton()>
-                            <i class="fa fa-plus" (click) = (showButton)></i>
+<!-- ---------------------------------------------------------------------------------ADD BUTTON METHOD-------------------------------------------------------------------------------------------------------------------- -->
+
+                        <button type="submit" class="btn todo-button" data-toggle="modal" (click) = "open(content)" data-target="#addnew-todo">
+                            <i class="fa fa-plus"></i>
                             Add new TODO</button>
                     </div>
                     <div class="panel-body table-responsive">
@@ -99,7 +101,7 @@
                 <div class="modal-dialog">
 
 
-                    <div class="modal-content" *ngIf = "showButtonValue">
+                    <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <h4 class="modal-title">Add new DOTO</h4>
@@ -113,23 +115,24 @@
 
 
                                             <div class="controls">
-                                                <input type="text" class="form-control" name="taskTitle" id="taskTitle" formcontrolname="taskTitle" placeholder="Title">
+                                                <input type="text" class="form-control" name="taskTitle" id="taskTitle" formcontrolname="taskTitle" placeholder="Title"  >
                                             </div>
                                         </div>
                                         <div class="form-group">
 
 
                                             <div class="controls">
-                                                <input type="date" class="form-control " name="targetDate" id="targetDate" formcontrolname="targetDate" placeholder="Date">
+                                                <input type="text" class="form-control" name="description" id="description" formcontrolname="description" placeholder="description"  >
                                             </div>
                                         </div>
                                         <div class="form-group">
 
 
                                             <div class="controls">
-                                                <textarea class="form-control" name="description" id="description" formcontrolname="description" rows="3" placeholder="Description"></textarea>
+                                                <input type="date" class="form-control " name="targetDate" id="targetDate" formcontrolname="targetDate" placeholder="Date"  >
                                             </div>
                                         </div>
+                                        
                                     </div>
                                 </div>
 
@@ -223,6 +226,114 @@
        
         <p>hello</p>
         <p class="lead">name is sujith</p>
+        <!-- example of modal -->
+        <button class="btn btn-md btn-outline-primary" (click) = open(content)>click me to open </button>
+        <ng-template #content let-modal id="modal-basic-title">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">New Friend</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                
+              <form >
+                <div class="form-group">
+                    <label for="firstname">TITLE</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="usertitle" id="usertitle" formcontrolname="usertitle" placeholder="usertitle"  >
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="lastname">Date</label>
+                    <div class="input-group">
+                        <input type="date" class="form-control " name="userdate" id="userdate" formcontrolname="userdate" placeholder="userdate"  >
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="lastname">description</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="userdescription" id="userdescription" formcontrolname="userdescription" placeholder="userdescription"  >
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="lastname">description</label>
+                    <div class="input-group">
+                        
+                    </div>
+                  </div>
+                  
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+            </div>
+          </ng-template>
+
+          <div class="row mt-2">
+            <div class="div-card col-sm-6 col-sm-offset-3  "   >
+                 
+                <form [formGroup]="userReg" (ngSubmit)="createUser()">
+                  
+        
+                    <div class="form-group">
+                        <label for="taskTitle"></label> 
+                        <input type="text" name="taskTitle" id="taskTitle" class="form-control" formControlName="taskTitle" placeholder="Enter the title">
+                        
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="description"></label> 
+                        <input type="text" name="description" id="description" class="form-control" formControlName="description" placeholder="Enter the description">
+                        
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="targetDate"></label> 
+                        <input type="text" name="targetDate" id="targetDate" class="form-control" formControlName="targetDate" placeholder="Enter the date">
+                          
+                    </div><br>
+                    <div>
+                        <button class="div-btn btn-primary" type="submit" [disabled]="!userReg.valid">{{btntxt}}</button>&nbsp;
+                        <button class="div-btn btn-primary" type="submit" [disabled]="!userReg.valid" (click)="resetForm()">Reset</button>
+        
+                    </div>
+                  </form>
+            </div>
+        </div>
+        <!-- ----------------------------- -->
+           <!--------------------- TODOS ------------------------------->
+  <div class="row ">
+    <div class="col offset  ">
+    <div class="col-md-6 " *ngIf = "todos.length > 0">
+       <div class="card text-white bg-info" *ngFor = "let todo of todos">
+         <div class="card-header">TITLE : {{todo.taskTitle | uppercase}}</div>
+         <div class="card-body">
+           <h5 class="card-title">DESC : {{todo.description | uppercase}}</h5>
+           <p class="card-text"> DATE : {{todo.targetDate | date : 'yyyy-MM-dd'}} </p>
+           <a   class="btn  btn-sm fa fa-edit" (click) = "editUser(todo)"></a>  &nbsp;
+           <a  class=" btn  btn-sm fa fa-trash" (click) = "onDelete(todo)"></a>
+         </div>
+       </div>
+     </div>
+   </div>
+  <!------------------------- ARCHIVE TODOS----------------------------->
+   <div class="col-md-5 offset  ">
+       
+      <div class="col offset" *ngIf="showArchives" >
+        <p class="cust-heading">ARCHIVES</p>
+          <div class="col-md-9 offset" *ngIf = "archives.length > 0">
+            <div class="card text-white bg-info" *ngFor = "let archive of archives">
+              <div class="card-header">TITLE : {{archive.taskTitle | uppercase}}</div>
+              <div class="card-body">
+                <h5 class="card-title">DESC : {{archive.description | uppercase}}</h5>
+                <p class="card-text"> DATE : {{archive.targetDate | date : 'yyyy-MM-dd'}} </p>                
+              </div>
+            </div>
+          </div>
+        </div>
+   </div>
+</div>
 
     </body>
 </html>
