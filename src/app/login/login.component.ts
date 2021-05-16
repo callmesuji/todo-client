@@ -16,6 +16,7 @@ interface AsyncValidatorFn {
 })
 
 export class LoginComponent implements OnInit {
+  hide : boolean = false;
   userForm: FormGroup;
   get name() {
     return this.userForm.get("name");

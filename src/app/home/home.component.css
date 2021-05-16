@@ -155,6 +155,13 @@
     float: left;
     background: #6f42c1;
     color: #fff;
+    padding: 7px 30px ;
+    border-radius: 20px;
+}
+.modal-footer .close{
+    float: right;
+    background: #171718;
+    color: #fff;
     padding: 7px 30px;
     border-radius: 20px;
 }

@@ -89,7 +89,7 @@
             <div class="modal-content">
 
             <div class="modal-header">
-              <h4 class="modal-title" id="modal-addnewtodo-title">ADD TODO PLEASE </h4>
+              <h4 class="modal-title" id="modal-addnewtodo-title">ADD TODO  </h4>
               <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -119,10 +119,15 @@
                             <input type="date" name="targetDate" id="targetDate" class="form-control" formControlName="targetDate" placeholder="Enter the date">
                               
                         </div><br>
-                        <div>
-                            <button class="div-btn btn-primary" type="submit" [disabled]="!userReg.valid" (click)="modal.close('Save click')">{{btntxt}}</button>&nbsp;
-                            <button class="div-btn btn-primary" type="submit" [disabled]="!userReg.valid" (click)="resetForm()">Reset</button>
-            
+                       
+                        <div class="modal-footer">
+                            <div class="action-section">
+                                <button type="submit" class="btn add" type="submit" [disabled]="!userReg.valid" (click)="modal.close('Save click')">Add</button>
+                            <button class="btn close ml-4 border" type="button"     (click)="modal.close('Save click')">close</button>
+
+                                 
+                            </div>
+
                         </div>
                       </form>
                 </div>
@@ -134,7 +139,7 @@
             <!-- -----------------------------------------------------------NG EDIT TEMPLATE------------------------------------------------------------------------------- -->
             <ng-template #edittodo let-modal id="edit-todo" >
                 <div class="modal-header">
-                  <h4 class="modal-title" id="modal-edittodo-title">EDIT TODO PLEASE </h4>
+                  <h4 class="modal-title" id="modal-edittodo-title">EDIT TODO </h4>
                   <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -165,8 +170,8 @@
                                   
                             </div><br>
                             <div>
-                                <button class="div-btn btn-primary" type="submit" [disabled]="!userReg.valid" (click)="modal.close('Save click')">{{btntxt}}</button>&nbsp;
-                            <button class="div-btn btn-primary" type="submit" [disabled]="!userReg.valid" (click)="resetForm()">Reset</button>
+                                <button class="btn btn-outline-success mr-2" type="submit" [disabled]="!userReg.valid" (click)="modal.close('Save click')">{{btntxt}}</button>&nbsp;
+                            <button class="btn btn-outline-dark" type="submit" [disabled]="!userReg.valid" (click)="resetForm()">Reset</button>
                 
                             </div>
                           </form>
