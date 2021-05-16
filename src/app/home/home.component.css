@@ -1,3 +1,4 @@
+@import "~bootstrap/dist/css/bootstrap.css";
 .navbar-default {
     background-color: #6f42c1 !important;
     border-color: #6f42c1 !important;
@@ -166,6 +167,10 @@
 }
 .modal-footer .add:hover{
 background: #3f09a2;
+}
+.modal-header hover{
+    color: white;
+
 }
 .modal-footer .add:focus{
     outline: none;

@@ -4,38 +4,27 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+       
 
     </head>
     <body>
+<div class="row" >
+    <div class="col">
+
+
 
 
         <!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
 
-        <link
-        rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
         <!----------- ---------TOGGLE BUTTONS----------------------->
-        <div class="row">
-
-            <div
-                class="col"><!--   -->
-            </div>
-
-            <div class="col-md-2">
-                <a class="btn btn-info fa fa-archive  bg-danger" (click)="toggleArchives()"></a>
-            </div>
-
-        </div>
+       
 
         <!--------------------- TODOS ------------------------------->
 
@@ -44,17 +33,15 @@
         <div class="main-wrapper">
 
             <div class="inner-wrapper">
-
+               
+                 
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3>TODO List
-                        </h3>
-<!-- ---------------------------------------------------------------------------------ADD BUTTON METHOD-------------------------------------------------------------------------------------------------------------------- -->
-
-                        <button type="submit" class="btn todo-button" data-toggle="modal" (click) = "open(content)" data-target="#addnew-todo">
-                            <i class="fa fa-plus"></i>
-                            Add new TODO</button>
+                    <div class="modal-header">
+                        <h3>TODO List  </h3>
+                        <button type="submit" style="color: blanchedalmond;" class="btn todo-button border" data-toggle="modal" (click) = newTodo(adddnewtodo)   data-target="#addnew-todo">
+                            <i class="fa fa-plus"  ></i> Add new TODO</button>
                     </div>
+
                     <div class="panel-body table-responsive">
 
                         <table id="example" class="table table-hover table-bordered" style="width:100%">
@@ -72,18 +59,16 @@
                                     <td>
                                         {{todo.taskTitle | uppercase}}</td>
                                     <td>
-                                        {{todo.targetDate | date : 'yyyy-MM-dd'}}</td>
+                                        {{todo.targetDate | date : 'dd-MM-yyyy'}}</td>
                                     <td>{{todo.description | uppercase}}</td>
-<!-- ---------------------------------------------------------------------------------EDIT BUTTON METHOD-------------------------------------------------------------------------------------------------------------------- -->
                                     <td>
-                                        <button class=" edit-button" data-toggle="modal" data-target="#edit-todo" type="submit">
+                                        <button class=" edit-button" data-toggle="modal"  (click) = editTodos(edittodo) (click) = "editUser(todo)"   data-target="#edit-todo"   >
                                             <i class="fa fa-pencil-square-o"></i>
                                         </button>
                                     </td>
-<!-- ---------------------------------------------------------------------------------DELETE BUTTON METHOD-------------------------------------------------------------------------------------------------------------------- -->
 
                                     <td>
-                                        <button class=" delete-button" data-toggle="modal" data-target="#delete" type="submit">
+                                        <button class=" delete-button" data-toggle="modal" data-target="#delete"     (click) = "deleteTodoss(deletetodos,todo)"  >
                                             <i class="fa fa-trash-o"></i>
                                         </button>
                                     </td>
@@ -93,247 +78,132 @@
 
                         </table>
                     </div>
-                </div>
+               
+            </div>
             </div>
             <!-----------------------------------------------------      FORM ADD NEW  TODO ---------------------------------------------------->
- 
-            <div class="modal fade" >
-                <div class="modal-dialog">
+            <!-- --------------------------------------------------------------------------------------------------------------------------------------------->
+             <!-- ------------------------NG TEMPLATE -------------------------------------- -->
 
+        <ng-template #adddnewtodo let-modal id="modal-addnewtodo-title">
+            <div class="modal-content">
 
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Add new DOTO</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form action="modal" [formGroup]="userReg" (ngSubmit)="createUser()">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
-                                        <div class="form-group">
-
-
-                                            <div class="controls">
-                                                <input type="text" class="form-control" name="taskTitle" id="taskTitle" formcontrolname="taskTitle" placeholder="Title"  >
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-
-
-                                            <div class="controls">
-                                                <input type="text" class="form-control" name="description" id="description" formcontrolname="description" placeholder="description"  >
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-
-
-                                            <div class="controls">
-                                                <input type="date" class="form-control " name="targetDate" id="targetDate" formcontrolname="targetDate" placeholder="Date"  >
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <div class="action-section">
-                                        <button type="submit" class="btn add">Add</button>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    </div>
-
-                                </div>
-                            </form>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-            <!----------------------------------------------------- EDIT TODO ---------------------------------------------------->
-            <div class="modal fade" id="edit-todo" role="dialog">
-
-                <div class="modal-dialog">
-
-
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Edit DOTO</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form action="#">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
-                                        <div class="form-group">
-
-
-                                            <div class="controls">
-                                                <input type="text" class="form-control" id="title" placeholder="Title">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-
-
-                                            <div class="controls">
-                                                <input type="date" class="form-control" id="date" placeholder="Date">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-
-
-                                            <div class="controls">
-                                                <textarea class="form-control" id="description" rows="3" placeholder="Description"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <div class="action-section">
-                                        <button type="submit" class="btn update">Update</button>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    </div>
-
-                                </div>
-                            </form>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-            <!----------------------------------------------------- DELETE TODO ---------------------------------------------------->
-            <div class="modal fade" id="delete" role="dialog">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Delete  TODO</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>Are you sure you want to delete TODO?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-       
-        <p>hello</p>
-        <p class="lead">name is sujith</p>
-        <!-- example of modal -->
-        <button class="btn btn-md btn-outline-primary" (click) = open(content)>click me to open </button>
-        <ng-template #content let-modal id="modal-basic-title">
             <div class="modal-header">
-              <h4 class="modal-title" id="modal-basic-title">New Friend</h4>
+              <h4 class="modal-title" id="modal-addnewtodo-title">ADD TODO PLEASE </h4>
               <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-                
-              <form >
-                <div class="form-group">
-                    <label for="firstname">TITLE</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="usertitle" id="usertitle" formcontrolname="usertitle" placeholder="usertitle"  >
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="lastname">Date</label>
-                    <div class="input-group">
-                        <input type="date" class="form-control " name="userdate" id="userdate" formcontrolname="userdate" placeholder="userdate"  >
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="lastname">description</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="userdescription" id="userdescription" formcontrolname="userdescription" placeholder="userdescription"  >
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="lastname">description</label>
-                    <div class="input-group">
-                        
-                    </div>
-                  </div>
-                  
-              </form>
+
+            <div class="row mt-2">
+                <div class="div-card col-sm-6 col-sm-offset-3">
+                     
+                    <form [formGroup]="userReg" (ngSubmit)="createUser()">
+           
+            
+                        <div class="form-group">
+                            <label for="taskTitle"></label> 
+                            <input type="text" name="taskTitle" id="taskTitle" class="form-control" formControlName="taskTitle" placeholder="Enter the title">
+                            
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="description"></label> 
+                            <input type="text" name="description" id="description" class="form-control" formControlName="description" placeholder="Enter the description">
+                            
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="targetDate"></label> 
+                            <input type="date" name="targetDate" id="targetDate" class="form-control" formControlName="targetDate" placeholder="Enter the date">
+                              
+                        </div><br>
+                        <div>
+                            <button class="div-btn btn-primary" type="submit" [disabled]="!userReg.valid" (click)="modal.close('Save click')">{{btntxt}}</button>&nbsp;
+                            <button class="div-btn btn-primary" type="submit" [disabled]="!userReg.valid" (click)="resetForm()">Reset</button>
+            
+                        </div>
+                      </form>
+                </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+            </div>
             </div>
           </ng-template>
+        <!-- ------------------------ END OF NG TEMPLATE -------------------------------------- -->
+            <!-- -----------------------------------------------------------NG EDIT TEMPLATE------------------------------------------------------------------------------- -->
+            <ng-template #edittodo let-modal id="edit-todo" >
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-edittodo-title">EDIT TODO PLEASE </h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+            <div class="modal-body">
 
-          <div class="row mt-2">
-            <div class="div-card col-sm-6 col-sm-offset-3  "   >
-                 
-                <form [formGroup]="userReg" (ngSubmit)="createUser()">
-                  
-        
-                    <div class="form-group">
-                        <label for="taskTitle"></label> 
-                        <input type="text" name="taskTitle" id="taskTitle" class="form-control" formControlName="taskTitle" placeholder="Enter the title">
-                        
+                <div class="row mt-2">
+                    <div class="div-card col-sm-6 col-sm-offset-3" >
+                         
+                        <form [formGroup]="userReg" (ngSubmit)="UpdateUser()">
+               
+                
+                            <div class="form-group">
+                                <label for="taskTitle"></label> 
+                                <input type="text" name="taskTitle" id="taskTitle" class="form-control" formControlName="taskTitle" placeholder="Enter the title">
+                                
+                            </div>
+                
+                            <div class="form-group">
+                                <label for="description"></label> 
+                                <input type="text" name="description" id="description" class="form-control" formControlName="description" placeholder="Enter the description">
+                                
+                            </div>
+                
+                            <div class="form-group">
+                                <label for="targetDate"></label> 
+                                <input type="date" name="targetDate" id="targetDate" class="form-control" formControlName="targetDate" placeholder="Enter the date">
+                                  
+                            </div><br>
+                            <div>
+                                <button class="div-btn btn-primary" type="submit" [disabled]="!userReg.valid" (click)="modal.close('Save click')">{{btntxt}}</button>&nbsp;
+                            <button class="div-btn btn-primary" type="submit" [disabled]="!userReg.valid" (click)="resetForm()">Reset</button>
+                
+                            </div>
+                          </form>
                     </div>
-        
-                    <div class="form-group">
-                        <label for="description"></label> 
-                        <input type="text" name="description" id="description" class="form-control" formControlName="description" placeholder="Enter the description">
-                        
-                    </div>
-        
-                    <div class="form-group">
-                        <label for="targetDate"></label> 
-                        <input type="text" name="targetDate" id="targetDate" class="form-control" formControlName="targetDate" placeholder="Enter the date">
-                          
-                    </div><br>
-                    <div>
-                        <button class="div-btn btn-primary" type="submit" [disabled]="!userReg.valid">{{btntxt}}</button>&nbsp;
-                        <button class="div-btn btn-primary" type="submit" [disabled]="!userReg.valid" (click)="resetForm()">Reset</button>
-        
-                    </div>
-                  </form>
+                </div>
             </div>
+    
+              </ng-template>
+              <!-- -------------------------------------------------------------END OF NG EDIT TEMPLATE------------------------------------------------------------ -->
+
+  
+     
         </div>
+ 
+
+       <!-- --------------------------------------------------------------------------------- -->
+ 
+        <ng-template #deletetodos let-c="close" let-d="dismiss">    
+            <div class="modal-header">    
+                <h4 class="modal-title" id="modal-deleteTodo-title">Confirmation</h4>    
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">    
+                    <span aria-hidden="true">×</span>    
+                </button>    
+            </div>    
+            <div class="modal-body">    
+                <p>Are you sure to delete this?</p>    
+            </div>    
+            <div class="modal-footer">    
+                <button type="button" class="btn btn-outline-danger" (click)="c('yes')">Yes</button>    
+                <button type="button" class="btn btn-outline-dark" (click)="d('Cross click')">Cancel</button>    
+            </div>    
+        </ng-template>   
+
+           
         <!-- ----------------------------- -->
-           <!--------------------- TODOS ------------------------------->
-  <div class="row ">
-    <div class="col offset  ">
-    <div class="col-md-6 " *ngIf = "todos.length > 0">
-       <div class="card text-white bg-info" *ngFor = "let todo of todos">
-         <div class="card-header">TITLE : {{todo.taskTitle | uppercase}}</div>
-         <div class="card-body">
-           <h5 class="card-title">DESC : {{todo.description | uppercase}}</h5>
-           <p class="card-text"> DATE : {{todo.targetDate | date : 'yyyy-MM-dd'}} </p>
-           <a   class="btn  btn-sm fa fa-edit" (click) = "editUser(todo)"></a>  &nbsp;
-           <a  class=" btn  btn-sm fa fa-trash" (click) = "onDelete(todo)"></a>
-         </div>
-       </div>
-     </div>
-   </div>
-  <!------------------------- ARCHIVE TODOS----------------------------->
-   <div class="col-md-5 offset  ">
-       
-      <div class="col offset" *ngIf="showArchives" >
-        <p class="cust-heading">ARCHIVES</p>
-          <div class="col-md-9 offset" *ngIf = "archives.length > 0">
-            <div class="card text-white bg-info" *ngFor = "let archive of archives">
-              <div class="card-header">TITLE : {{archive.taskTitle | uppercase}}</div>
-              <div class="card-body">
-                <h5 class="card-title">DESC : {{archive.description | uppercase}}</h5>
-                <p class="card-text"> DATE : {{archive.targetDate | date : 'yyyy-MM-dd'}} </p>                
-              </div>
-            </div>
-          </div>
-        </div>
-   </div>
+ 
+    </div>
 </div>
-
     </body>
 </html>

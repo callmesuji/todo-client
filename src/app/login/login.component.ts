@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit {
           this.authservice.addTokenAndUsername(token,user.username);
         }, _error => {
           this.errorMessage = "Invalid username or password";
+          alert(this.errorMessage);
           this.userForm.reset();
           setTimeout(() => {
             this.errorMessage = "";
@@ -72,7 +73,8 @@ export class LoginComponent implements OnInit {
           if(res){{
             this.router.navigate(['/home']);
             this.userForm.reset();
-            this.successMessage = "REGISTERED SUCCESSFULLY"
+            this.successMessage = "REGISTERED SUCCESSFULLY";
+            alert(this.successMessage);
              
           }}
         }, 
